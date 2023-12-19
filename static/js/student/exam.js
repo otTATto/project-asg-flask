@@ -201,13 +201,13 @@ async function arrangeResponse(input){
         $('#cheatDisplayArea').removeClass('bg-success-subtle').addClass('bg-danger-subtle');
         $('#cheatDisplayMainMessage').removeClass('text-success').addClass('text-danger');
         // DB格納
-        var cheatDataRef = ref(database, 'subjects/' + subjectId + '/tests/' + testId + 'cheatData/');
+        var cheatDataRef = ref(database, 'subjects/' + subjectId + '/tests/' + testId + '/cheatData/');
         var snapshot = await get(cheatDataRef);
         var data = snapshot.val();
         var dataLength = 0;
         if(data != null) dataLength = Object.keys(data).length;  // 要素数を数える
-        var cheaDataSetRef = ref(database, 'subjects/' + subjectId + '/tests/' + testId + 'cheatData/' + dataLength + '/');
-        await set(cheaDataSetRef, {
+        var cheatDataSetRef = ref(database, 'subjects/' + subjectId + '/tests/' + testId + '/cheatData/' + dataLength + '/');
+        await set(cheatDataSetRef, {
             cheatUid : userId,
             cheatDate : capStartTime
         });
