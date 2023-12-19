@@ -1,0 +1,38 @@
+/* 色に関するCSS */
+
+    /* main pink */
+    .c-pink {
+        color: rgb(158, 68, 112);
+    }
+    .c-pink-bg {
+        background-color: rgb(158, 68, 112);
+    }
+
+    /* sub pink */
+    .c-sub-pink {
+        color: rgb(206, 141, 171);
+    }
+    .c-sub-pink-bg {
+        background-color: rgb(206, 141, 171);
+    }
+
+    /* main blue */
+    .c-blue {
+        color: rgb(68, 112, 158);
+    }
+    .c-blue-bg {
+        background-color: rgb(68, 112, 158);
+    }
+
+    /* sub blue */
+    .c-sub-blue {
+        color: rgb(119, 149, 187);
+    }
+    .c-sub-blue-bg {
+        background-color: rgb(119, 149, 187);
+    }
+
+    /* main black */
+    .c-black {
+        color: rgb(55, 51, 51);
+    }
