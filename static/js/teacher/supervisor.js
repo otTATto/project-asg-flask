@@ -45,6 +45,7 @@ var subjectNameArea = document.getElementById("subjectNameArea");
 var testNameArea = document.getElementById("testNameArea");
 var testDateArea = document.getElementById("testDateArea");
 var testLimitArea = document.getElementById("testLimitArea");
+var cheatDataArea = document.getElementById("cheatDataArea");
 var cheatDataArray = [];        // カンニングデータを格納する配列   （例）[['cheatUid_1', 'cheatDate_1'], ['cheatUid_2', 'cheatDate_2'], ...]
 var detailCheatDataArray = [];  // カンニングデータの詳細を格納する配列
 var checkCheatDataStatus = 0;   // カンニングデータをチェックしているかどうかを格納
@@ -156,6 +157,8 @@ async function getDetailCheatData(){
 
 // カンニングデータをHTMLに表示させる関数
 async function showCheatData(){
+    $('#cheatDataLoading').removeClass('visible').addClass('unvisible');
+
     if(cheatDataArray.length == 0){ 
         $('#neverCheatedArea').removeClass('unvisible').addClass('visible');
         return;         // カンニングデータが無いなら以降を実行しない
@@ -163,7 +166,6 @@ async function showCheatData(){
 
     // カンニングデータをHTMLに表示させる
     $('#neverCheatedArea').removeClass('visible').addClass('unvisible');
-    var cheatDataArea = document.getElementById("cheatDataArea");
     var tmpContent = '';
     for(var i = detailCheatDataArray.length; i > 0; i--){
         tmpContent += '<tr>';
