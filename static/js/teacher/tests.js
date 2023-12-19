@@ -531,6 +531,12 @@ async function makeTest(){
     const testLimitInput = document.getElementById('testLimitInput').value;    //試験時間
     const testMemoInput = document.getElementById('testMemoInput').value;    //備考
 
+    // もし記入漏れがあればアラートを出して以下を実行しない
+    if(subjectUid == "0" || testNameInput == null || testDateInput == null || testLimitInput == null){
+        alert("入力内容に不備があります。");
+        return;
+    }
+
     // テストのuidを作成
     const testUid = generateUuid();
 
