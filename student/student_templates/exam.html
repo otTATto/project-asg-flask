@@ -120,13 +120,27 @@
 
                     <div class="mt-3">
                         <div class="d-grid col-10 mx-auto">
-                            <div class="bg-success-subtle br-20 py-2">
-                                <div class="f-Zen-Kaku-Gothic-New fw-bold fs-3 text-center text-success">
+                            <!-- カンニング検知したら表示するよメッセージ表示エリア -->
+                            <div id="cheatDisplayBefore" class="br-20 bg-secondary-subtle">
+                                <div class="f-Zen-Kaku-Gothic-New fw-bold c-sub-blue text-center py-5">
+                                    カンニングを検知した場合、<span class="c-blue">ここに表示されます</span>
+                                </div>
+                            </div>
+                            <!-- カンニング検知表示エリア -->
+                            <div id="cheatDisplayArea" class="bg-success-subtle br-20 py-2 unvisible">
+                                <div id="cheatDisplayMainMessage" class="f-Zen-Kaku-Gothic-New fw-bold fs-3 text-center text-success">
                                     カンニングは検知されていません
                                 </div>
                                 <div class="my-2" style="border-bottom: 2px solid rgb(255, 255, 255);"></div>
-                                <div class="f-Zen-Maru-Gothic fw-bold text-center text-secondary">
+                                <div id="cheatDisplaySubMessage" class="f-Zen-Maru-Gothic fw-bold text-center text-secondary">
                                     この調子で試験がんばってください！
+                                </div>
+                            </div>
+                            <!-- カンニングお疲れ様表示エリア -->
+                            <div id="cheatDisplayAfter" class="br-20 bg-secondary-subtle unvisible">
+                                <div class="f-Zen-Kaku-Gothic-New fw-bold c-sub-blue text-center py-4">
+                                    試験お疲れ様でした<br>
+                                    検知したカンニングは担当教師が<span class="c-blue">いつでも閲覧できます</span>
                                 </div>
                             </div>
                         </div>
