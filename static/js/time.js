@@ -65,8 +65,6 @@ function convertUnixToDateArray(input){
     output[4] = date.getMinutes().toString().padStart(2, "0");
     output[5] = date.getSeconds().toString().padStart(2, "0");
 
-    console.log("[ GET ]output[0]: " + output[0]);
-
     return output;
 }
 

@@ -47,6 +47,7 @@ var testDateArea = document.getElementById("testDateArea");
 var testLimitArea = document.getElementById("testLimitArea");
 var cheatDataArray = [];        // カンニングデータを格納する配列   （例）[['cheatUid_1', 'cheatDate_1'], ['cheatUid_2', 'cheatDate_2'], ...]
 var detailCheatDataArray = [];  // カンニングデータの詳細を格納する配列
+var checkCheatDataStatus = 0;   // カンニングデータをチェックしているかどうかを格納
 
 // ページがロードされたときに実行
 window.onload = async () => {
@@ -76,9 +77,6 @@ window.onload = async () => {
     var backBtn = document.getElementById("backBtn");
     backBtn.href = "./mypage.html?id=" + userId;
 
-    // カンニングデータの取得・詳細情報取得・整形・表示
-    await doCheatData();
-
 }
 
 // １秒に１回実行される
@@ -89,17 +87,24 @@ x = setInterval(() => {
     showStatus();       // ステータスに応じてHTMLの表示を変える
     showTimer();        // タイマー表示の関数の呼び出し
 
+    // カンニングデータのチェック作業中でなければ実行
+    // カンニングデータの取得・詳細情報取得・整形・表示
+    if(checkCheatDataStatus == 0) doCheatData();
+
 }, 1000);
 
 // 新たにカンニングを検知したときに実行（ただし教科IDとテストIDが既知である前提）
 var cheatDataRef = ref(database, 'subjects/' + subjectId + '/tests/' + testId + '/cheatData/');
-onValue(cheatDataRef, doCheatData());  // カンニングデータの取得・詳細情報取得・整形・表示
+onValue(cheatDataRef, await doCheatData());  // カンニングデータの取得・詳細情報取得・整形・表示
 
 // カンニングデータの取得・詳細情報取得・整形・表示すべてをまとめた関数
 async function doCheatData(){
+    checkCheatDataStatus = 1;       // カンニングデータの確認作業中を格納
+    cheatDataArray = [];            // 一旦配列を空にする
     await getCheatData();           // カンニングデータの取得
     await getDetailCheatData();     // カンニングデータの詳細を取得
     await showCheatData();          // カンニングデータの表示
+    checkCheatDataStatus = 0;       // カンニングデータの確認作業終了を格納
 }
 
 // カンニングデータを読み込んで配列「cheatDataArray」に格納する関数
@@ -114,13 +119,21 @@ async function getCheatData(){
     Object.keys(data).forEach((element, index, key, snapshot) => {
         var tmp = [];
         tmp[0] = data[element].cheatUid;
-        tmp[1] = data[element].cheatDate;
+        tmp[1] = arrangeTime(data[element].cheatDate);
         cheatDataArray.push(tmp);
     });
 }
 
+// UNIX時間を表示したい形式に変換する
+function arrangeTime(unixInput){
+    var tmp = convertUnixToDateArray(unixInput);
+    var output = tmp[3] + ':' + tmp[4] + '<small class="text-secondary">:' + tmp[5] + '</small>';
+    return output;
+}
+
 // カンニングデータの詳細を取得して配列「detailCheatDataArray」に格納する関数
 async function getDetailCheatData(){
+    detailCheatDataArray = [];            // 一旦配列を空にする
     // 配列「cheatDataArray」のカンニングした人のUidを元に、その人の各情報を取得して配列「detailCheatDataArray」に格納
     for(var i = 0; i < cheatDataArray.length; i++){
         var targetUid = cheatDataArray[i][0];                       // ユーザーID
