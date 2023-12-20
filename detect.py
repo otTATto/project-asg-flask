@@ -341,10 +341,10 @@ def detect(cap):
         test = y_df
 
         import pickle
-        model_path = "C:\\Users\\nrkk0\Downloads\\model_x (3).pkl" 
-        model_path1 = "C:\\Users\\nrkk0\\Downloads\\model_sc (1).pkl"
-        model_path2 = "C:\\Users\\nrkk0\\Downloads\\model_y (1).pkl"
-        model_path3 = "C:\\Users\\nrkk0\\Downloads\\model_y_sc (1).pkl"
+        model_path = "static/src/pkl/model_x_3.pkl" 
+        model_path1 = "static/src/pkl/model_sc_1.pkl"
+        model_path2 = "static/src/pkl/model_y_1.pkl"
+        model_path3 = "static/src/pkl/model_y_sc_1.pkl"
 
         with open(model_path, 'rb') as file:
             model1 = pickle.load(file) 
@@ -593,7 +593,7 @@ def detect(cap):
         from sklearn.model_selection import cross_val_score
 
         import pickle
-        model_path = "C:\\Users\\nrkk0\\Downloads\\model_detect.pkl"
+        model_path = "static/src/pkl/model_detect.pkl"
   
         with open(model_path, 'rb') as file:
             model = pickle.load(file)
