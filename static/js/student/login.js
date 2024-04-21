@@ -61,7 +61,7 @@ async function login(){
     let mailFromDB = data[element].loginData.mail;
     
     if(mailFromDB == mailInput){   //一致したらそれを保存
-      console.log('ヒットしました:' + element.value);
+      console.log('ヒットしました:' + mailFromDB);
       mailValue = mailFromDB;
       passwordValue = data[element].loginData.passwd;
       uidValue = data[element].mainData.userUid  //uidを取得
