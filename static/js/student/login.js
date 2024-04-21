@@ -64,7 +64,7 @@ async function login(){
       console.log('ヒットしました:' + mailFromDB);
       mailValue = mailFromDB;
       passwordValue = data[element].loginData.passwd;
-      uidValue = data[element].mainData.userUid  //uidを取得
+      uidValue = data[element].mainData.userUid;  //uidを取得
     }
   });
   
