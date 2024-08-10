@@ -43,7 +43,6 @@ var depInput; //学科の情報格納
 
 // 「ログインする」ボタンを押したときに実行
 async function login(){
-
     // メアド、パスワードin 入力領域を取得
     mailInput = document.getElementById('loginMailInput').value;
     passwordInput = document.getElementById('loginPasswordInput').value;
@@ -57,16 +56,20 @@ async function login(){
   const itemRef = ref(database, 'users/students/');
   var snapshot = await get(itemRef);
   var data = snapshot.val();
-  Object.keys(data).forEach((element, index, key, snapshot) => {  //DB内を全探索して一致するメアドを探す
+  Object.keys(data).forEach((element) => {  //DB内を全探索して一致するメアドを探す
     let mailFromDB = data[element].loginData.mail;
     
     if(mailFromDB == mailInput){   //一致したらそれを保存
       console.log('ヒットしました:' + mailFromDB);
       mailValue = mailFromDB;
       passwordValue = data[element].loginData.passwd;
-      uidValue = data[element].mainData.userUid;  //uidを取得
+      console.log('pass' + passwordValue);
+      uidValue = data[element].mainData.userUid
+      console.log('uid' + uidValue);  //uidを取得
     }
   });
+
+  console.log('mailValue' + mailValue);
   
   // メアドがDBに無かったらreturn
   if(!mailValue) {
@@ -81,6 +84,7 @@ async function login(){
   }
   
   // ページ遷移
+  alert('aaa');
   window.location.href = './mypageS.html?uid=' + uidValue;
 
 }

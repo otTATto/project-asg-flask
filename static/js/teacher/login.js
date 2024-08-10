@@ -25,7 +25,7 @@ const analytics = getAnalytics(app);
 const database = getDatabase();
 
 // 関数をインポート
-import {queryDivider, generateUuid } from '../set.js';
+import { generateUuid } from '../set.js';
 
 // グローバル変数の用意
 var mailValue;      // メアド in databaseを格納
@@ -43,11 +43,9 @@ var depInput; //学科の情報格納
 
 // 「ログインする」ボタンを押したときに実行
 async function login(){
-
     // メアド、パスワードin 入力領域を取得
     mailInput = document.getElementById('loginMailInput').value;
     passwordInput = document.getElementById('loginPasswordInput').value;
-    // メールアドレス、パスワードin データベースを取得
 
   if(!database) {
     alert("DBに正しくアクセスできません");
@@ -82,7 +80,6 @@ async function login(){
   
   // ページ遷移
   window.location.href = './mypage.html?uid=' + uidValue;
-
 }
 
 // ナビにおける「サインイン」ボタンを押したときに実行
